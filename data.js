@@ -4,7 +4,7 @@
 // backup: "ok" | "not" (only on the drive) | "newer" (newer version on the drive, not on the server)
 // SAMPLE DATA for the mockup.
 window.DASHBOARD = {
-  "updated": { "at": "2026-10-22T13:55", "by": "Branko" },
+  "updated": { "at": "2026-10-22T13:52", "by": "Branko" },
   "current": "sara-sainte",
   "projects": [
     {
