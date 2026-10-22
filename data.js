@@ -8,8 +8,8 @@
 if (!window.dashboardUpdate) location.reload();
 
 window.DASHBOARD = {
-  "updated": { "at": "2026-10-22T13:52", "by": "Branko" },
-  "current": "sara-sainte",
+  "updated": { "at": "2026-10-22T14:08", "by": "Branko" },
+  "current": "conveo-v5",
   "projects": [
     {
       "id": "conveo-v5", "client": "Conveo", "title": "Video 5",
@@ -18,7 +18,7 @@ window.DASHBOARD = {
       "tasks": [
         { "text": "Rough cut", "done": true },
         { "text": "Pick music", "done": true },
-        { "text": "Intro motion graphics", "done": false },
+        { "text": "Intro motion graphics", "done": true },
         { "text": "Colour grade", "done": true },
         { "text": "Subtitles", "done": false },
         { "text": "Export V1", "done": false }
