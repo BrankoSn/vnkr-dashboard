@@ -66,18 +66,18 @@
   /* Row 1 */
   .row1 { display: grid; grid-template-columns: 1fr 520px; gap: 28px; min-height: 0; }
 
-  .hero { position: relative; overflow: hidden; padding: 38px 44px; display: grid; grid-template-columns: 1fr 300px; gap: 44px; border-color: rgba(91,140,255,.28); }
-  .hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(600px 300px at 0% 0%, rgba(91,140,255,.16), transparent 70%); pointer-events: none; }
+  .hero { position: relative; padding: 34px 44px; display: grid; grid-template-columns: 1fr 300px; gap: 44px; border-color: rgba(91,140,255,.28); }
+  .hero::before { content: ""; position: absolute; inset: 0; border-radius: inherit; background: radial-gradient(600px 300px at 0% 0%, rgba(91,140,255,.16), transparent 70%); pointer-events: none; }
   .hero > * { position: relative; }
   .hero-main { display: flex; flex-direction: column; min-width: 0; }
   .now { display: flex; align-items: center; gap: 12px; color: var(--blue); }
   .now .label { color: var(--blue); }
   .dot { width: 11px; height: 11px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 0 rgba(91,140,255,.6); animation: pulse 2.4s ease-out infinite; }
   @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(91,140,255,.55); } 80%,100% { box-shadow: 0 0 0 14px rgba(91,140,255,0); } }
-  .hero h1 { margin-top: 14px; font-family: Manrope; font-weight: 800; font-size: 76px; line-height: 1; letter-spacing: -.025em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .hero h1 small { display: block; font-size: 26px; font-weight: 600; letter-spacing: 0; color: var(--muted); margin-bottom: 10px; }
+  .hero .client { margin-top: 14px; line-height: 1; font-size: 26px; font-weight: 600; color: var(--muted); align-self: flex-start; }
+  .hero h1 { margin-top: 10px; align-self: flex-start; max-width: 100%; font-family: Manrope; font-weight: 800; font-size: 76px; line-height: 1; letter-spacing: -.025em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-  .phases { display: flex; gap: 8px; margin-top: 24px; margin-bottom: 30px; }
+  .phases { display: flex; gap: 8px; margin-top: 22px; margin-bottom: 24px; }
   .phase { flex: 1; }
   .phase i { display: block; height: 6px; border-radius: 3px; background: var(--gray-soft); }
   .phase span { display: block; margin-top: 10px; font-size: 15px; color: var(--faint); font-weight: 500; }
@@ -90,10 +90,32 @@
   .task { display: flex; align-items: center; gap: 14px; font-size: 21px; line-height: 1.25; min-width: 0; }
   .task .box { flex: none; width: 24px; height: 24px; border-radius: 7px; border: 2px solid rgba(255,255,255,.22); display: grid; place-items: center; }
   .task.done { color: var(--faint); }
-  .task.done .t { text-decoration: line-through; text-decoration-color: rgba(255,255,255,.18); }
+  .task .t { white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    background: linear-gradient(rgba(255,255,255,.22), rgba(255,255,255,.22)) no-repeat 0 56% / 0 2px; }
+  .task.done .t { background-size: 100% 2px; }
+  .task .box svg { width: 15px; height: 15px; fill: none; stroke: var(--green); stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 20; stroke-dashoffset: 20; }
   .task.done .box { border-color: transparent; background: var(--green-soft); }
-  .task.done .box::after { content: ""; width: 10px; height: 6px; border: solid var(--green); border-width: 0 0 2.5px 2.5px; transform: translateY(-1px) rotate(-45deg); }
-  .task .t { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .task.done .box svg { stroke-dashoffset: 0; }
+  .task.more { font-size: 16px; color: var(--faint); padding-left: 36px; }
+
+  /* Tick animation: box pops, check draws, line sweeps through the text */
+  .task.just-done { animation: fade-done 1.2s .5s both; }
+  .task.just-done .box { animation: pop .7s cubic-bezier(.34,1.56,.64,1) both; }
+  .task.just-done .box svg { animation: draw .5s .2s cubic-bezier(.65,0,.35,1) both; }
+  .task.just-done .t { animation: strike .7s .45s cubic-bezier(.65,0,.35,1) both; }
+  @keyframes pop { 0% { transform: scale(1); background: transparent; border-color: rgba(255,255,255,.22); } 45% { transform: scale(1.28); background: rgba(63,210,140,.35); border-color: transparent; } 100% { transform: scale(1); } }
+  @keyframes draw { from { stroke-dashoffset: 20; } to { stroke-dashoffset: 0; } }
+  @keyframes strike { from { background-size: 0 2px; } to { background-size: 100% 2px; } }
+  @keyframes fade-done { from { color: var(--text); } to { color: var(--faint); } }
+
+  /* Motion helpers */
+  .flying { position: relative; z-index: 6; }
+  .flying.down { z-index: 4; }
+  .flying.up { z-index: 8; }
+  .ghost { position: absolute; z-index: 5; pointer-events: none; border-radius: var(--radius); border: 1px solid rgba(91,140,255,.35);
+    background: linear-gradient(180deg, var(--surface-2), var(--surface)); box-shadow: 0 30px 80px rgba(0,0,0,.45); }
+  .ghost.up { z-index: 7; }
+  .ghost.down { z-index: 3; border-color: var(--line); }
 
   .hero-side { display: flex; flex-direction: column; gap: 16px; }
   .stat { flex: 1; padding: 24px 26px; border-radius: 18px; background: rgba(10,14,22,.45); border: 1px solid var(--line); display: flex; flex-direction: column; justify-content: center; }
@@ -142,7 +164,7 @@
   .bk.ok::before { background: var(--green); }
   .bk.warn { background: var(--amber-soft); color: var(--amber); }
 
-  .spare { padding: 28px 30px; background: rgba(17,24,39,.55); border-style: dashed; border-color: rgba(255,255,255,.09); }
+  .spare { grid-column: 4; padding: 28px 30px; background: rgba(17,24,39,.55); border-style: dashed; border-color: rgba(255,255,255,.09); }
   .spare .tasks { grid-template-columns: 1fr; gap: 13px; margin-top: 20px; }
   .spare .task { font-size: 18px; color: var(--muted); }
   .spare .task.done { color: var(--faint); }
@@ -184,6 +206,12 @@
   const MONTH = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   const MONTH_LONG = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
+  // Motion: calm and smooth (TV in the office), asymmetric ease-out
+  const SLOW = 1.2;
+  const EASE = "cubic-bezier(.22,1,.36,1)";
+  const ms = n => n * SLOW;
+  const UP_DELAY = 220; // the new project starts rising just after the old one starts sinking
+
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
   const day = iso => { const [y, m, d] = iso.slice(0, 10).split("-").map(Number); return new Date(y, m - 1, d); };
   const today = () => { const n = new Date(); return new Date(n.getFullYear(), n.getMonth(), n.getDate()); };
@@ -192,29 +220,39 @@
   const countdown = n => n < 0 ? `${-n} day${n === -1 ? "" : "s"} overdue` : n === 0 ? "today" : n === 1 ? "tomorrow" : `in ${n} days`;
   const plural = (n, w) => `${n} ${w}${n === 1 ? "" : "s"}`;
   const pad = n => String(n).padStart(2, "0");
+  const $ = (s, el = document) => el.querySelector(s);
+  const $$ = (s, el = document) => [...el.querySelectorAll(s)];
 
-  const taskList = tasks => `<ul class="tasks">${tasks.map(t =>
-    `<li class="task${t.done ? " done" : ""}"><span class="box"></span><span class="t">${esc(t.text)}</span></li>`).join("")}</ul>`;
-  const openFirst = tasks => tasks.filter(t => !t.done).concat(tasks.filter(t => t.done));
+  const CHECK = `<svg viewBox="0 0 24 24"><path d="M5.5 12.5l4.2 4.2L18.5 7.8"/></svg>`;
+  const taskList = (tasks, scope, justDone, more = 0) => `<ul class="tasks">${tasks.map(t => {
+    const key = `${scope}:${t.text}`;
+    return `<li class="task${t.done ? " done" : ""}${justDone.has(key) ? " just-done" : ""}" data-key="task:${esc(key)}" data-flip="scale"><span class="box">${CHECK}</span><span class="t">${esc(t.text)}</span></li>`;
+  }).join("")}${more ? `<li class="task more">+${more} more</li>` : ""}</ul>`;
+  // Open tasks first, then ones ticked off just now (so you see the tick), then the rest
+  const openFirst = (tasks, scope, justDone = new Set()) => {
+    const fresh = t => justDone.has(`${scope}:${t.text}`);
+    return tasks.filter(t => !t.done).concat(tasks.filter(t => t.done && fresh(t)), tasks.filter(t => t.done && !fresh(t)));
+  };
 
   const backup = p => p.backup === "ok"
     ? `<span class="bk ok">${esc(p.drive)}${p.drive === "Server" ? "" : " · backed up"}</span>`
     : `<span class="bk warn">${p.backup === "newer" ? "New version on " : "Only on "}${esc(p.drive)}</span>`;
 
-  function render(D) {
+  function render(D, justDone) {
     const cur = D.projects.find(p => p.id === D.current);
 
     // Now working on
-    const hero = document.getElementById("hero");
+    const hero = $("#hero");
     if (cur) {
       const n = cur.deadline ? diff(cur.deadline) : null;
       hero.innerHTML = `
         <div class="hero-main">
           <div class="now"><span class="dot"></span><span class="label">Now working on</span></div>
-          <h1><small>${esc(cur.client)}</small>${esc(cur.title)}</h1>
+          <div class="client" data-key="client:${esc(cur.id)}" data-flip="scale">${esc(cur.client)}</div>
+          <h1 data-key="title:${esc(cur.id)}" data-flip="scale">${esc(cur.title)}</h1>
           <div class="phases">${PHASES.map((f, i) =>
             `<div class="phase${i < cur.phase ? " done" : i === cur.phase ? " cur" : ""}"><i></i><span>${f}</span></div>`).join("")}</div>
-          ${taskList(cur.tasks.slice(0, 6))}
+          ${taskList(cur.tasks.slice(0, 6), cur.id, justDone)}
         </div>
         <div class="hero-side">
           <div class="stat"><span class="label">Deadline</span>
@@ -225,16 +263,16 @@
             <span class="s">${cur.tasks.filter(t => t.done).length} of ${cur.tasks.length} tasks done</span></div>
         </div>`;
     } else {
-      hero.innerHTML = `<div class="hero-main"><div class="now"><span class="label">Now working on</span></div><h1><small>Nothing scheduled</small>Free day</h1></div>`;
+      hero.innerHTML = `<div class="hero-main"><div class="now"><span class="label">Now working on</span></div><div class="client">Nothing scheduled</div><h1>Free day</h1></div>`;
     }
 
     // Calendar: from today, max 4
-    document.getElementById("cal").innerHTML = D.calendar
+    $("#cal").innerHTML = D.calendar
       .filter(e => diff(e.date) >= 0)
       .sort((a, b) => (a.date + (a.time || "")).localeCompare(b.date + (b.time || "")))
       .slice(0, 4)
       .map(e => { const d = day(e.date); return `
-        <li class="ev${diff(e.date) === 0 ? " today" : ""}">
+        <li class="ev${diff(e.date) === 0 ? " today" : ""}" data-key="ev:${esc(e.date + e.title)}">
           <div class="d"><span>${DAY[d.getDay()]}</span><b>${d.getDate()}</b></div>
           <div class="w"><div class="t">${esc(e.title)}</div>
             <div class="m"><span class="tag ${e.type}">${e.type}</span>${[e.time, e.place].filter(Boolean).map(esc).join(" · ")}</div></div>
@@ -244,49 +282,172 @@
     const order = { in_progress: 0, feedback: 1, todo: 2, done: 3 };
     const rest = D.projects.filter(p => p.id !== D.current && p.status !== "done")
       .sort((a, b) => order[a.status] - order[b.status]).slice(0, 3);
-    document.getElementById("projects").innerHTML = rest.map(p => `
-      <div class="card proj">
-        <div class="top"><div style="min-width:0"><div class="k">${esc(p.client)}</div><h2>${esc(p.title)}</h2></div>
+    $("#projects").innerHTML = rest.map(p => {
+      const list = openFirst(p.tasks, p.id, justDone);
+      const more = list.slice(4).filter(t => !t.done).length;
+      return `
+      <div class="card proj" data-key="card:${esc(p.id)}">
+        <div class="top"><div style="min-width:0"><div class="k" data-key="client:${esc(p.id)}" data-flip="scale">${esc(p.client)}</div><h2 data-key="title:${esc(p.id)}" data-flip="scale">${esc(p.title)}</h2></div>
           <span class="pill ${p.status}">${STATUS[p.status]}</span></div>
         ${p.status === "feedback"
           ? `<div class="waiting"><b>${esc(p.version || "Version")} sent</b> on ${short(p.sent)}.<br>Waiting for ${esc(p.client)} to reply.</div>`
-          : taskList(openFirst(p.tasks).slice(0, 4))}
+          : taskList(list.slice(0, 4), p.id, justDone, more)}
         <div class="foot"><span class="days"><b>${p.editDays}</b> ${p.editDays === 1 ? "day" : "days"} worked</span>${backup(p)}</div>
-      </div>`).join("") + `
-      <div class="card spare"><div class="label">If there's time</div>
-        ${taskList(openFirst(D.spare).slice(0, 5))}</div>`;
+      </div>`; }).join("") + `
+      <div class="card spare" data-key="card:spare"><div class="label">If there's time</div>
+        ${taskList(openFirst(D.spare, "spare", justDone).slice(0, 5), "spare", justDone)}</div>`;
 
     // Footer
-    document.getElementById("drives").innerHTML = D.drives.map(s =>
+    $("#drives").innerHTML = D.drives.map(s =>
       `<div class="drive${s.status === "ok" ? "" : " warn"}"><i></i><b>${esc(s.name)}</b><span>${esc(s.text)}</span></div>`).join("");
     const u = new Date(D.updated.at);
-    document.getElementById("meta").innerHTML =
+    $("#meta").innerHTML =
       `<span><b>${D.stats.deliveredThisMonth}</b> videos delivered in ${MONTH_LONG[new Date().getMonth()]}</span>` +
       `<span>Updated ${DAY[u.getDay()]} ${pad(u.getHours())}:${pad(u.getMinutes())} by ${esc(D.updated.by)}</span>`;
   }
 
+  // ---- Animated updates -------------------------------------------------
+  let prevD = null, prevSig = "";
+
+  // Tasks that went from open to done since the last version
+  function findJustDone(prev, D) {
+    const was = new Map();
+    if (prev) {
+      prev.projects.forEach(p => p.tasks.forEach(t => was.set(`${p.id}:${t.text}`, t.done)));
+      prev.spare.forEach(t => was.set(`spare:${t.text}`, t.done));
+    }
+    const out = new Set();
+    D.projects.forEach(p => p.tasks.forEach(t => { const k = `${p.id}:${t.text}`; if (t.done && was.get(k) === false) out.add(k); }));
+    D.spare.forEach(t => { const k = `spare:${t.text}`; if (t.done && was.get(k) === false) out.add(k); });
+    return out;
+  }
+
+  // Stage-local box of a screen rect (the stage is scaled to fit the screen)
+  function local(r) {
+    const s = $("#stage").getBoundingClientRect();
+    return { left: (r.left - s.left) / scale, top: (r.top - s.top) / scale, width: r.width / scale, height: r.height / scale };
+  }
+
+  // A blank card that travels between two places while the content flies on top
+  function ghost(from, to, dir, delay = 0) {
+    const a = local(from), b = local(to), g = document.createElement("div"), fadeIn = dir === "down";
+    g.className = "ghost " + dir;
+    $("#stage").appendChild(g);
+    const box = r => ({ left: r.left + "px", top: r.top + "px", width: r.width + "px", height: r.height + "px" });
+    g.animate([{ ...box(a), opacity: fadeIn ? 0 : 1 }, { offset: .35, opacity: 1 }, { offset: .7, opacity: 1 }, { ...box(b), opacity: 0 }],
+      { duration: ms(1100), delay: ms(delay), easing: EASE, fill: "both" }).finished.then(() => g.remove());
+  }
+
+  function enter(els, delay = 0, step = 70) {
+    els.forEach((el, i) => el.animate(
+      [{ opacity: 0, transform: "translateY(18px)", filter: "blur(8px)" }, { opacity: 1, transform: "none", filter: "blur(0)" }],
+      { duration: ms(800), delay: ms(delay + i * step), easing: EASE, fill: "backwards" }));
+  }
+
+  function update(D) {
+    const sig = JSON.stringify(D) + today().toDateString();
+    if (sig === prevSig) return; // nothing changed: leave the screen alone
+    prevSig = sig;
+
+    const prev = prevD;
+    const first = new Map($$("[data-key]").map(el => [el.dataset.key, el.getBoundingClientRect()]));
+    const heroBox = $("#hero").getBoundingClientRect();
+
+    render(D, findJustDone(prev, D));
+    prevD = JSON.parse(JSON.stringify(D));
+
+    // First load: everything glides in once
+    if (!prev) {
+      enter([$("header"), $("#hero"), $(".cal"), ...$$("#projects > .card"), $("footer")], 100, 110);
+      return;
+    }
+
+    const switched = prev.current !== D.current;
+    const downCard = switched ? $(`[data-key="card:${CSS.escape(prev.current)}"]`) : null;
+
+    if (switched) {
+      const upFrom = first.get(`card:${D.current}`);
+      // Old hero sinks into a card first, then the card rises into the hero on top of it
+      if (downCard) ghost(heroBox, downCard.getBoundingClientRect(), "down", 0);
+      if (upFrom) ghost(upFrom, heroBox, "up", UP_DELAY);
+      enter([$("#hero .now"), $("#hero .phases"), ...$$("#hero .stat")], UP_DELAY + 450, 90);
+      if (downCard) enter($$(".pill, .waiting, .foot, .more", downCard), 700, 80);
+      if (downCard) downCard.animate([{ background: "none", borderColor: "transparent" }, { offset: .7, background: "none", borderColor: "transparent" }], { duration: ms(1100) });
+    }
+
+    // FLIP: everything with the same key glides from its old place to its new one
+    const moved = new Map();
+    const entering = [];
+    $$("[data-key]").forEach(el => {
+      const f = first.get(el.dataset.key);
+      if (!f) { entering.push(el); return; }
+      const l = el.getBoundingClientRect();
+      let dx = (f.left - l.left) / scale, dy = (f.top - l.top) / scale;
+      const parent = el.parentElement.closest("[data-key^='card:']");
+      const pm = parent && moved.get(parent);
+      if (pm) { dx -= pm.dx; dy -= pm.dy; }               // parent already carries it
+      const k = el.dataset.flip === "scale" ? f.height / l.height : 1;
+      if (Math.abs(dx) < 1 && Math.abs(dy) < 1 && Math.abs(k - 1) < .01) return;
+      if (el.dataset.key.startsWith("card:")) moved.set(el, { dx, dy });
+      const dir = !switched ? "" : el.closest("#hero") ? "up" : downCard && downCard.contains(el) ? "down" : "";
+      el.classList.add("flying");
+      if (dir) el.classList.add(dir);
+      el.animate([{ transform: `translate(${dx}px, ${dy}px) scale(${k})`, transformOrigin: "0 0" }, { transform: "none", transformOrigin: "0 0" }],
+        { duration: ms(1100), delay: ms(dir === "up" ? UP_DELAY : 0), easing: EASE, fill: "backwards" })
+        .finished.then(() => el.classList.remove("flying", "up", "down"));
+    });
+
+    // New things fade in (but not inside a card that is itself new, nor the card the old hero sinks into)
+    enter(entering.filter(el => {
+      if (el === downCard) return false;
+      const parent = el.parentElement.closest("[data-key^='card:']");
+      return !(parent && entering.includes(parent) && parent !== downCard);
+    }), switched ? 450 : 0);
+
+    // Status changed: the pill pops
+    D.projects.forEach(p => {
+      const old = prev.projects.find(o => o.id === p.id);
+      const pill = $(`[data-key="card:${CSS.escape(p.id)}"] .pill`);
+      if (old && pill && old.status !== p.status)
+        pill.animate([{ transform: "scale(.6)", opacity: 0 }, { transform: "scale(1.12)", opacity: 1, offset: .6 }, { transform: "scale(1)" }],
+          { duration: ms(700), delay: ms(300), easing: EASE, fill: "backwards" });
+    });
+  }
+
   function tick() {
     const n = new Date();
-    document.getElementById("time").textContent = `${pad(n.getHours())}:${pad(n.getMinutes())}`;
-    document.getElementById("date").textContent = `${DAY_LONG[n.getDay()]} ${n.getDate()} ${MONTH_LONG[n.getMonth()]}`;
+    $("#time").textContent = `${pad(n.getHours())}:${pad(n.getMinutes())}`;
+    $("#date").textContent = `${DAY_LONG[n.getDay()]} ${n.getDate()} ${MONTH_LONG[n.getMonth()]}`;
   }
 
   // Scale to the screen + shift a few pixels every 5 min against burn-in
-  let shift = 0;
+  let shift = 0, scale = 1;
   function fit() {
-    const s = Math.min(innerWidth / 1920, innerHeight / 1080);
+    scale = Math.min(innerWidth / 1920, innerHeight / 1080);
     const o = [[0, 0], [4, 3], [-3, 4], [3, -4], [-4, -3]][shift % 5];
-    document.getElementById("stage").style.transform = `translate(calc(-50% + ${o[0]}px), calc(-50% + ${o[1]}px)) scale(${s})`;
+    $("#stage").style.transform = `translate(calc(-50% + ${o[0]}px), calc(-50% + ${o[1]}px)) scale(${scale})`;
   }
 
-  // Load data.js fresh every minute (cache-busting, so edits show up without a page reload)
+  // Load data.js fresh every minute (cache-busting, so edits show up without a page reload).
+  // If the page itself changed (new design/code), reload once so the TV never runs an old version.
+  let pageText = null;
+  function checkPage() {
+    fetch(location.pathname + "?t=" + Date.now()).then(r => r.ok ? r.text() : null).then(t => {
+      if (t === null) return;
+      if (pageText === null) pageText = t;
+      else if (t !== pageText) location.reload();
+    }).catch(() => {});
+  }
   function load() {
+    checkPage();
     const s = document.createElement("script");
     s.src = "data.js?t=" + Date.now();
-    s.onload = () => { render(window.DASHBOARD); s.remove(); };
+    s.onload = () => { update(window.DASHBOARD); s.remove(); };
     s.onerror = () => s.remove(); // keep showing the last version
     document.head.appendChild(s);
   }
+
+  window.dashboardUpdate = update; // for testing: dashboardUpdate(modifiedData)
 
   tick(); fit(); load();
   addEventListener("resize", fit);

@@ -3,6 +3,10 @@
 // phase (0-4): Pre-production, Shoot, Edit, Feedback, Delivery
 // backup: "ok" | "not" (only on the drive) | "newer" (newer version on the drive, not on the server)
 // SAMPLE DATA for the mockup.
+
+// Pages from before the animation update reload themselves to get the new code
+if (!window.dashboardUpdate) location.reload();
+
 window.DASHBOARD = {
   "updated": { "at": "2026-10-22T13:52", "by": "Branko" },
   "current": "sara-sainte",
