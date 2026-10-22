@@ -4,7 +4,7 @@
 // backup: "ok" | "not" (only on the drive) | "newer" (newer version on the drive, not on the server)
 // SAMPLE DATA for the mockup.
 window.DASHBOARD = {
-  "updated": { "at": "2026-10-22T17:40", "by": "Branko" },
+  "updated": { "at": "2026-10-22T13:47", "by": "Branko" },
   "current": "conveo-v5",
   "projects": [
     {
@@ -15,7 +15,7 @@ window.DASHBOARD = {
         { "text": "Rough cut", "done": true },
         { "text": "Pick music", "done": true },
         { "text": "Intro motion graphics", "done": false },
-        { "text": "Colour grade", "done": false },
+        { "text": "Colour grade", "done": true },
         { "text": "Subtitles", "done": false },
         { "text": "Export V1", "done": false }
       ]
