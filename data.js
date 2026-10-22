@@ -8,8 +8,8 @@
 if (!window.dashboardUpdate) location.reload();
 
 window.DASHBOARD = {
-  "updated": { "at": "2026-10-22T14:09", "by": "Branko" },
-  "current": "conveo-v5",
+  "updated": { "at": "2026-10-22T14:10", "by": "Branko" },
+  "current": "conveo-v4",
   "projects": [
     {
       "id": "conveo-v5", "client": "Conveo", "title": "Video 5",
@@ -37,10 +37,15 @@ window.DASHBOARD = {
       ]
     },
     {
-      "id": "conveo-v4", "client": "Conveo", "title": "Video 4",
-      "status": "feedback", "phase": 3, "version": "V1", "sent": "2026-10-14",
+      "id": "conveo-v4", "client": "Conveo", "title": "Video 4 · V2",
+      "status": "in_progress", "phase": 3, "version": "V2", "deadline": "2026-10-29",
       "editDays": 5, "drive": "Server", "backup": "ok",
-      "tasks": []
+      "tasks": [
+        { "text": "Feedback V1 received", "done": true },
+        { "text": "Process feedback", "done": false },
+        { "text": "Export V2", "done": false },
+        { "text": "Send V2 to Conveo", "done": false }
+      ]
     },
     {
       "id": "gimv-2026", "client": "Gimv", "title": "Annual results",
