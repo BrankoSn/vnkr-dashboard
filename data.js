@@ -4,8 +4,8 @@
 // backup: "ok" | "not" (only on the drive) | "newer" (newer version on the drive, not on the server)
 // SAMPLE DATA for the mockup.
 window.DASHBOARD = {
-  "updated": { "at": "2026-10-22T13:47", "by": "Branko" },
-  "current": "conveo-v5",
+  "updated": { "at": "2026-10-22T13:55", "by": "Branko" },
+  "current": "sara-sainte",
   "projects": [
     {
       "id": "conveo-v5", "client": "Conveo", "title": "Video 5",
@@ -21,13 +21,15 @@ window.DASHBOARD = {
       ]
     },
     {
-      "id": "sara-sainte", "client": "Sara Sainte", "title": "Brand video",
-      "status": "in_progress", "phase": 2, "deadline": "2026-10-30",
-      "editDays": 4, "drive": "T7", "backup": "newer",
+      "id": "sara-sainte", "client": "Sara Sainte", "title": "Brand video · V2",
+      "status": "in_progress", "phase": 3, "version": "V2", "deadline": "2026-10-30",
+      "editDays": 5, "drive": "T7", "backup": "newer",
       "tasks": [
         { "text": "Add subtitles", "done": true },
-        { "text": "Audio mix", "done": false },
-        { "text": "Export + upload", "done": false }
+        { "text": "Audio mix", "done": true },
+        { "text": "Process V1 feedback", "done": false },
+        { "text": "Export V2", "done": false },
+        { "text": "Send V2 to Sara Sainte", "done": false }
       ]
     },
     {
