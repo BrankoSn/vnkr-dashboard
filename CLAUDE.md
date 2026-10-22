@@ -5,7 +5,7 @@
 **Status:** mockup met voorbeelddata (okt 2026). Nog niet op GitHub, nog geen Raspberry Pi.
 
 **Opbouw:**
-- `dashboard.html`: de weergave (leest `data.js`, herlaadt elke 60 s).
+- `index.html`: de weergave (leest `data.js`, herlaadt elke 60 s).
 - `data.js`: alle gegevens (`window.DASHBOARD = {...}`). Enkel dit bestand aanpassen om status/taken te wijzigen.
 
 **Plan:**
