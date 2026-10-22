@@ -4,6 +4,8 @@
 
 **Status:** mockup met voorbeelddata (okt 2026), in het Engels. Staat **openbaar** op GitHub: repo `BrankoSn/vnkr-dashboard`, live op https://brankosn.github.io/vnkr-dashboard/ (GitHub Pages, branch main). Tv is (waarschijnlijk) een smart-tv die de link opent; Raspberry Pi is dan niet nodig.
 
+**Skill voor Peter (baas):** `peter-skill/` (niet in git), kopie op `~/Desktop/VNKR-dashboard-Peter/`. Skill + INSTALLATION.md in het Engels (antwoordt in Peters taal); Peter mag alles aanpassen. Peter werkt met eigen GitHub-account als collaborator + Claude Code; skill in `~/.claude/skills/dashboard`. Nog te doen: **maandag 26/10/2026** met Peter zijn GitHub-account aanmaken en hem uitnodigen (rol Write); Branko's eigen skill staat in `~/Documents/Claude/.claude/skills/dashboard` (incl. dagafsluiting en collaborator toevoegen).
+
 **Let op:** de repo en de site zijn openbaar. Klantnamen/taken zijn dus voor iedereen met de link zichtbaar; beslissen voor er echte data in komt.
 
 **Opbouw:**
