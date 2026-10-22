@@ -2,15 +2,17 @@
 
 **Doel:** tv-dashboard op kantoor (1920×1080) met: Nu bezig (groot), open projecten met belangrijke taken, kleine kalender (shoots/deadlines), lijstje "als er tijd over is", schijven/backup-status en editing-dagen per project.
 
-**Status:** mockup met voorbeelddata (okt 2026). Nog niet op GitHub, nog geen Raspberry Pi.
+**Status:** mockup met voorbeelddata (okt 2026), in het Engels. Staat **openbaar** op GitHub: repo `BrankoSn/vnkr-dashboard`, live op https://brankosn.github.io/vnkr-dashboard/ (GitHub Pages, branch main). Tv is (waarschijnlijk) een smart-tv die de link opent; Raspberry Pi is dan niet nodig.
+
+**Let op:** de repo en de site zijn openbaar. Klantnamen/taken zijn dus voor iedereen met de link zichtbaar; beslissen voor er echte data in komt.
 
 **Opbouw:**
-- `index.html`: de weergave (leest `data.js`, herlaadt elke 60 s).
+- `index.html`: de weergave (haalt `data.js` elke 60 s vers op).
 - `data.js`: alle gegevens (`window.DASHBOARD = {...}`). Enkel dit bestand aanpassen om status/taken te wijzigen.
 
 **Plan:**
-- Privé GitHub-repo als bron; Branko en zijn baas (eigen Claude) passen `data.js` aan door het tegen hun AI te zeggen.
-- Raspberry Pi achter de tv: `git pull` elke minuut (cron, read-only deploy key), Chromium in kiosk-modus. Geen AI nodig op de Pi.
+- GitHub-repo als bron; Branko en zijn baas (eigen Claude) passen `data.js` aan door het tegen hun AI te zeggen.
+- Weergave: smart-tv opent de Pages-link. Alternatief als het privé moet: Raspberry Pi met `git pull` elke minuut (geen AI nodig).
 - Skill voor de baas (dashboard uitleggen + data aanpassen) en `/dagafsluiting` voor Branko (backup-status, +1 editing-dag, Nu bezig voor morgen).
 
 **Afspraken:**
