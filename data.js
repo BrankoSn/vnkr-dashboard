@@ -8,7 +8,7 @@
 if (!window.dashboardUpdate) location.reload();
 
 window.DASHBOARD = {
-  "updated": { "at": "2026-10-22T14:10", "by": "Branko" },
+  "updated": { "at": "2026-10-22T14:31", "by": "Branko" },
   "current": "conveo-v4",
   "projects": [
     {
@@ -38,13 +38,13 @@ window.DASHBOARD = {
     },
     {
       "id": "conveo-v4", "client": "Conveo", "title": "Video 4 · V2",
-      "status": "in_progress", "phase": 3, "version": "V2", "deadline": "2026-10-29",
+      "status": "feedback", "phase": 3, "version": "V2", "sent": "2026-10-22", "deadline": "2026-10-29",
       "editDays": 5, "drive": "Server", "backup": "ok",
       "tasks": [
         { "text": "Feedback V1 received", "done": true },
         { "text": "Process feedback", "done": false },
-        { "text": "Export V2", "done": false },
-        { "text": "Send V2 to Conveo", "done": false }
+        { "text": "Export V2", "done": true },
+        { "text": "Send V2 to Conveo", "done": true }
       ]
     },
     {
