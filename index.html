@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #070708;
+    --bg: #030304;
     --text: #f4f4f5;
     --muted: #9c9ca4;
     --faint: #6e6e77;
@@ -38,12 +38,12 @@
     background: var(--bg);
     isolation: isolate;
   }
-  #stage::before { /* one calm studio light, top left, fading to black */
+  #stage::before { /* OLED black, one spotlight behind the hero */
     content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
     background:
-      radial-gradient(1300px 760px at 16% -12%, rgba(255,255,255,.15), transparent 68%),
-      radial-gradient(1000px 640px at 98% 108%, rgba(255,255,255,.085), transparent 68%),
-      linear-gradient(160deg, #101012, #060607 62%);
+      radial-gradient(900px 460px at 640px 360px, rgba(255,255,255,.17), transparent 72%),
+      radial-gradient(1500px 800px at 640px 360px, rgba(255,255,255,.05), transparent 75%),
+      #030304;
   }
   #stage::after { /* grain */
     content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .07; mix-blend-mode: overlay;
