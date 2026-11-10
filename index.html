@@ -9,10 +9,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #030304;
+    --bg: #040706;
     --text: #f4f4f5;
-    --muted: #9c9ca4;
-    --faint: #6e6e77;
+    --muted: #98a59f;
+    --faint: #6c7a73;
     --line: rgba(255,255,255,.09);
     --blue: #7db1ff;
     --green: #62dfa2;
@@ -38,12 +38,12 @@
     background: var(--bg);
     isolation: isolate;
   }
-  #stage::before { /* OLED black, one spotlight behind the hero */
+  #stage::before { /* emerald black: soft green light top left and bottom right */
     content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
     background:
-      radial-gradient(900px 460px at 640px 360px, rgba(255,255,255,.17), transparent 72%),
-      radial-gradient(1500px 800px at 640px 360px, rgba(255,255,255,.05), transparent 75%),
-      #030304;
+      radial-gradient(1400px 820px at 14% -12%, rgba(90,200,160,.22), transparent 66%),
+      radial-gradient(1000px 640px at 100% 110%, rgba(60,160,130,.12), transparent 66%),
+      linear-gradient(165deg, #0d1613, #040706 65%);
   }
   #stage::after { /* grain */
     content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .07; mix-blend-mode: overlay;
@@ -53,7 +53,7 @@
 
   /* Glass tile: thin pane, light catches the top edge */
   .card {
-    background: linear-gradient(180deg, rgba(255,255,255,.078), rgba(255,255,255,.026));
+    background: linear-gradient(180deg, rgba(220,255,240,.085), rgba(220,255,240,.028));
     -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur);
     border: 1px solid rgba(255,255,255,.085); border-top-color: rgba(255,255,255,.2);
     border-radius: var(--radius);
@@ -74,7 +74,7 @@
   .row1 { display: grid; grid-template-columns: 1fr 520px; gap: 28px; min-height: 0; }
 
   .hero { padding: 34px 48px; display: grid; grid-template-columns: 1fr 268px; gap: 48px;
-    background: linear-gradient(180deg, rgba(255,255,255,.11), rgba(255,255,255,.035)); border-top-color: rgba(255,255,255,.28); }
+    background: linear-gradient(180deg, rgba(220,255,240,.12), rgba(220,255,240,.04)); border-top-color: rgba(220,255,240,.3); }
   .hero-main { display: flex; flex-direction: column; min-width: 0; }
   .now { display: flex; align-items: center; gap: 12px; }
   .now .label { color: var(--blue); }
@@ -120,7 +120,7 @@
   .flying.up { z-index: 8; }
   .ghost { position: absolute; z-index: 5; pointer-events: none; border-radius: var(--radius);
     border: 1px solid rgba(255,255,255,.1); border-top-color: rgba(255,255,255,.28);
-    background: linear-gradient(180deg, rgba(255,255,255,.11), rgba(255,255,255,.035));
+    background: linear-gradient(180deg, rgba(220,255,240,.12), rgba(220,255,240,.04));
     -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur); box-shadow: 0 34px 80px -20px rgba(0,0,0,.8); }
   .ghost.up { z-index: 7; }
   .ghost.down { z-index: 3; }
